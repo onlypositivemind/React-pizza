@@ -30,6 +30,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		pointer-events: none;
 	}
 }
 
@@ -45,7 +46,8 @@
 
 .doughSelection,
 .sizeSelection {
-	justify-content: space-between;
+	justify-content: center;
+	gap: 8px;
 
 	li {
 		height: 32px;
@@ -70,6 +72,8 @@
 }
 
 .sizeSelection {
+	gap: 8px;
+
 	li {
 		width: 85px;
 	}

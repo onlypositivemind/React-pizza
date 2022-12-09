@@ -1,0 +1,25 @@
+.categories {
+	margin-bottom: 30px;
+
+	ul {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+	}
+
+	li {
+		padding: 10px 15px;
+		font-weight: 700;
+		font-size: var(--font-size-s);
+		border-radius: 30px;
+		overflow: hidden;
+		background-color: #f9f9f9;
+		cursor: pointer;
+	}
+
+	li.active {
+		color: #fff;
+		background-color: #282828;
+	}
+
+}

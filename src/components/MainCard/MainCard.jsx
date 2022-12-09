@@ -1,25 +1,52 @@
+import { useState } from 'react';
 import s from './MainCard.module.scss';
 
-const MainCard = () => {
+const MainCard = ({ name, price, imageUrl, sizes, types }) => {
+	const typesName = ['тонкое', 'традиционное'];
+	
+	const [activeType, setActiveType] = useState(0);
+	const [activeSize, setActiveSize] = useState(0);
+	
+	const onClickType = (i) => {
+		setActiveType(i);
+	};
+	
+	const onClickSize = (i) => {
+		setActiveSize(i);
+	};
+	
 	return (
 		<div className={s.cardWrapper}>
 			<div className={s.pizzaImage}>
-				<img src="all-pizzas-images/1.jpg" alt="Pizza" />
+				<img src={imageUrl} alt="Pizza" />
 			</div>
-			<h3>Чизбургер-пицца</h3>
+			<h3>{name}</h3>
 			<div className={s.selectorBlock}>
 				<ul className={s.doughSelection}>
-					<li className={s.active}>тонкое</li>
-					<li>традиционное</li>
+					{
+						types.map((typeNumber, index) => <li
+								key={typeNumber}
+								className={activeType === index ? s.active : null}
+								onClick={() => onClickType(index)}
+							>
+								{typesName[typeNumber]}
+							</li>
+						)}
 				</ul>
 				<ul className={s.sizeSelection}>
-					<li className={s.active}>26 см.</li>
-					<li>30 см.</li>
-					<li>40 см.</li>
+					{
+						sizes.map((size, index) => <li
+								key={size}
+								className={activeSize === index ? s.active : null}
+								onClick={() => onClickSize(index)}
+							>
+								{`${size} см.`}
+							</li>
+						)}
 				</ul>
 			</div>
 			<div className={s.bottom}>
-				<p>от 395 ₽</p>
+				<p>от {price} ₽</p>
 				<button className={s.addButton}>
 					<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
 					     xmlns="http://www.w3.org/2000/svg">
