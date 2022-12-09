@@ -1,0 +1,33 @@
+.notFound {
+	height: calc(100vh - 321px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	h3 {
+		margin-bottom: 30px;
+		font-weight: 700;
+		font-size: 150px;
+		font-style: italic;
+	}
+}
+
+.title, .subtitle {
+	font-weight: 600;
+}
+
+.title {
+	margin-bottom: 10px;
+	font-size: var(--font-size-xxl);
+	color: var(--subtitle-color-main);
+}
+
+.subtitle {
+	font-size: var(--font-size-l);
+	color: var(--subtitle-color-main);
+}
+
+.link {
+	color: var(--color-main);
+}
