@@ -1,3 +1,20 @@
+:root {
+	--font-family-main: 'Nunito', sans-serif;
+	--color-main: #fe5f1e;
+	--font-dark-main: #2c2c2c;
+	--subtitle-color-main: #8d8d8d;
+
+	--font-size-xs: 14px;
+	--font-size-s: 16px;
+	--font-size-m: 18px;
+	--font-size-l: 20px;
+	--font-size-xl: 22px;
+	--font-size-xxl: 24px;
+	--font-size-xxxl: 32px;
+}
+
 body {
+	padding: 45px;
 	font-family: 'Nunito', sans-serif;
+	background-color: #ffdf8c;
 }
