@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import Logo from '../../shared/images/logo.jpg';
 import BasketSVG from '../../shared/images/icons/header-basket.svg';
 import s from './Layout.module.scss';
@@ -8,7 +8,7 @@ const Layout = () => {
 		<div className={s.wrapper}>
 			
 			<header className={s.header}>
-				<NavLink to="/">
+				<Link to="/">
 					<div className={s.headerLeft}>
 						<img src={Logo} alt="Logo" />
 						<div className={s.logoContent}>
@@ -16,9 +16,9 @@ const Layout = () => {
 							<p>самая вкусная пицца во вселенной</p>
 						</div>
 					</div>
-				</NavLink>
+				</Link>
 				<div className={s.headerRight}>
-					<NavLink to="/basket">
+					<Link to="/basket">
 						<div className={s.basketContent}>
 							<span>0 ₽</span>
 							<p>
@@ -26,7 +26,7 @@ const Layout = () => {
 								<span>0</span>
 							</p>
 						</div>
-					</NavLink>
+					</Link>
 				</div>
 			</header>
 			
