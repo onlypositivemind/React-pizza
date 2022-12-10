@@ -1,5 +1,6 @@
 import MainCard from '../../components/MainCard/MainCard';
 import Categories from '../../components/Categories/Categories';
+import Sort from '../../components/Sort/Sort';
 import s from './AllPizzas.module.scss';
 
 const pizzas = [
@@ -110,7 +111,10 @@ const AllPizzas = () => {
 	
 	return (
 		<section className={s.allPizzas}>
-			<Categories />
+			<div className={s.top}>
+				<Categories />
+				<Sort />
+			</div>
 			<h2>Все пиццы</h2>
 			<div className={s.pizzasWrapper}>
 				{

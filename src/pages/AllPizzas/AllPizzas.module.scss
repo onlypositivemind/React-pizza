@@ -7,6 +7,13 @@
 	}
 }
 
+.top {
+	margin-bottom: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .pizzasWrapper {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, 280px);
