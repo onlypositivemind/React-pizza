@@ -20,10 +20,10 @@ const Layout = () => {
 				<div className={s.headerRight}>
 					<NavLink to="/basket">
 						<div className={s.basketContent}>
-							<span>520 ₽</span>
+							<span>0 ₽</span>
 							<p>
 								<img src={BasketSVG} alt="Basket icon" />
-								<span>3</span>
+								<span>0</span>
 							</p>
 						</div>
 					</NavLink>
