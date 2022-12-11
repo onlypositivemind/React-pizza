@@ -4,9 +4,10 @@ import MainCard from '../../components/MainCard/MainCard';
 import MainCardLoader from '../../components/MainCard/MainCardLoader';
 import Categories from '../../components/Categories/Categories';
 import Sort from '../../components/Sort/Sort';
+import Pagination from '../../components/Pagination/Pagination';
 import s from './AllPizzas.module.scss';
 
-const AllPizzas = () => {
+const AllPizzas = ({ searchValue }) => {
 	const [pizzasDate, setPizzasDate] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	
@@ -16,6 +17,8 @@ const AllPizzas = () => {
 		sortBy: 'rating',
 		order: 'desc',
 	});
+	
+	const [currentPage, setCurrentPage] = useState(1);
 	
 	const categoryHandler = (i) => {
 		setCategoryId(i);
@@ -32,8 +35,10 @@ const AllPizzas = () => {
 				
 				const { data } = await axios.get(`
 				https://639487884df9248eada4f54f.mockapi.io/all-pizzas?
-				${!categoryId ? '' : 'category=' + categoryId}
+				page=${currentPage}&limit=4&
+				${categoryId ? 'category=' + categoryId : ''}
 				&sortBy=${sortData.sortBy}&order=${sortData.order}
+				${searchValue ? `&search=${searchValue}` : ''}
 				`);
 				
 				setPizzasDate(data);
@@ -44,7 +49,7 @@ const AllPizzas = () => {
 			}
 		};
 		fetchData();
-	}, [categoryId, sortData]);
+	}, [categoryId, sortData, searchValue, currentPage]);
 	
 	return (
 		<section className={s.allPizzas}>
@@ -62,11 +67,18 @@ const AllPizzas = () => {
 			<div className={s.pizzasWrapper}>
 				{
 					isLoading
-						? [...Array(!categoryId ? 8 : 4)].map((_, index) => <MainCardLoader
+						? [...Array(4)].map((_, index) => <MainCardLoader
 							key={index} />)
 						: pizzasDate.map(obj => <MainCard key={obj.id} {...obj} />)
 				}
 			</div>
+			{
+				!pizzasDate.length
+					? <p className={s.nothing}>Ничего не найдено :(</p>
+					: <Pagination
+						changePageHandler={(pageNumber) => setCurrentPage(pageNumber)}
+					/>
+			}
 		</section>
 	);
 };

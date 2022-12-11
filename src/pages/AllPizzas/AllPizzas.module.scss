@@ -15,10 +15,18 @@
 }
 
 .pizzasWrapper {
+	margin-bottom: 30px;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, 280px);
 	align-items: center;
 	justify-content: center;
 	column-gap: 35px;
 	row-gap: 50px;
+}
+
+.nothing {
+	text-align: center;
+	font-weight: 600;
+	font-size: var(--font-size-xxl);
+	color: var(--subtitle-color-main);
 }

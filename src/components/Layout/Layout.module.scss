@@ -19,8 +19,7 @@
 .header {
 	margin: 0 35px 40px;
 	padding: 35px 0;
-
-	justify-content: space-between;
+	gap: 40px;
 	border-bottom: 1px solid #fff3d6;
 }
 
@@ -57,7 +56,47 @@
 	p {
 		font-size: var(--font-size-s);
 		text-transform: lowercase;
-		color: var(--subtitle-color-main)
+		color: var(--subtitle-color-main);
+	}
+}
+
+.searchBlock {
+	margin-left: auto;
+	position: relative;
+	width: 250px;
+
+	.searchIcon,
+	.clearIcon {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 20px;
+		height: 20px;
+	}
+
+	.searchIcon {
+		left: 8px;
+		pointer-events: none;
+	}
+
+	.clearIcon {
+		right: 8px;
+		cursor: pointer;
+	}
+
+	input {
+		padding: 8px 32px;
+		width: 100%;
+		font-size: var(--font-size-s);
+		color: var(--subtitle-color-main);
+		border: 1px solid var(--subtitle-color-main);
+		border-radius: 10px;
+		overflow: hidden;
+		transition: border 0.2s ease-in-out;
+
+		&:focus {
+			border-color: var(--color-main);
+		}
 	}
 }
 
