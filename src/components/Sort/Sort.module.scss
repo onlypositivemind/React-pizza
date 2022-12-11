@@ -23,7 +23,7 @@
 }
 
 .subtitle {
-	width: 99px;
+	width: 151px;
 	color: var(--color-main);
 	text-decoration: wavy underline;
 	user-select: none;
@@ -35,7 +35,6 @@
 	z-index: 1;
 	top: 25px;
 	right: 0;
-	width: 130px;
 	background-color: #fff;
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.09);
 	border: 1px solid #eee;
@@ -46,7 +45,7 @@
 	transition: opacity 0.2s ease-in-out;
 
 	ul {
-		padding: 20px 0 20px 15px;
+		padding: 20px 15px;
 		height: 100%;
 		display: flex;
 		flex-direction: column;

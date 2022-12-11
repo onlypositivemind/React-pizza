@@ -2,14 +2,16 @@ import { useState } from 'react';
 import Arrow from '../../shared/images/icons/sort-arrow.svg';
 import s from './Sort.module.scss';
 
-const Sort = () => {
+const Sort = ({ sortData, sortDataHandler }) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [selected, setSelected] = useState('популярности');
+	const sortingList = [
+		{ name: 'Сначала популярные', sortBy: 'rating', order: 'desc' },
+		{ name: 'Сначала недорогие', sortBy: 'price', order: 'asc' },
+		{ name: 'Сначала дорогие', sortBy: 'price', order: 'desc' },
+	];
 	
-	const sortingList = ['популярности', 'цене', 'алфавиту',];
-	
-	const onClickListItem = (value) => {
-		setSelected(value);
+	const onClickListItem = (obj) => {
+		sortDataHandler(obj);
 		setIsOpen(false);
 	};
 	
@@ -20,22 +22,22 @@ const Sort = () => {
 				className={isOpen ? `${s.arrow} ${s.active}` : s.arrow}
 				alt="Arrow"
 			/>
-			<p className={s.title}>Сортировка по :</p>
+			<p className={s.title}>Сортировка:</p>
 			<p
 				className={s.subtitle}
 				onClick={() => setIsOpen(!isOpen)}
 			>
-				{selected}
+				{sortData.name}
 			</p>
 			<div className={isOpen ? `${s.popup} ${s.active}` : s.popup}>
 				<ul>
 					{
-						sortingList.map((str) => <li
-								key={str}
-								onClick={() => onClickListItem(str)}
-								className={selected === str ? s.active : null}
+						sortingList.map((obj) => <li
+								key={obj.name}
+								onClick={() => onClickListItem(obj)}
+								className={sortData.name === obj.name ? s.active : null}
 							>
-								{str}
+								{obj.name}
 							</li>
 						)}
 				</ul>

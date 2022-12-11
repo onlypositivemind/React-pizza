@@ -1,14 +1,7 @@
-import { useState } from 'react';
 import s from './Categories.module.scss';
 
-const Categories = () => {
-	const categories = ['Все', 'Мясные', 'Вегатерианские ', 'Гриль', 'Острые', 'Закрытые',];
-	
-	const [activeCategory, setActiveCategory] = useState(0);
-	
-	const onClickCategory = (i) => {
-		setActiveCategory(i);
-	};
+const Categories = ({ categoryId, categoryHandler }) => {
+	const categories = ['Все', 'Мясные', 'Острые', 'С грибами', 'Без мяса'];
 	
 	return (
 		<div className={s.categories}>
@@ -16,8 +9,8 @@ const Categories = () => {
 				{
 					categories.map((str, index) => <li
 							key={str}
-							onClick={() => onClickCategory(index)}
-							className={activeCategory === index ? s.active : null}
+							onClick={() => categoryHandler(index)}
+							className={categoryId === index ? s.active : null}
 						>
 							{str}
 						</li>

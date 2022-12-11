@@ -15,6 +15,7 @@
 
 body {
 	padding: clamp(0.938rem, -0.402rem + 6.7vw, 2.813rem);
+	overflow-y: scroll;
 	font-family: 'Nunito', sans-serif;
 	background-color: #ffdf8c;
 }
