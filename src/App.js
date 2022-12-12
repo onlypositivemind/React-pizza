@@ -18,8 +18,8 @@ function App() {
 			}>
 				<Route index element={<AllPizzas searchValue={searchValue} />} />
 				<Route path="basket" element={<Basket />} />
-				<Route path="*" element={<NotFound />} />
 			</Route>
+			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);
 }

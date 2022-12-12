@@ -25,6 +25,8 @@
 }
 
 .nothing {
+	height: calc(100vh - 490px);
+	margin-bottom: auto;
 	text-align: center;
 	font-weight: 600;
 	font-size: var(--font-size-xxl);

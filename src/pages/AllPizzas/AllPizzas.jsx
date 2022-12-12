@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import MainCard from '../../components/MainCard/MainCard';
 import MainCardLoader from '../../components/MainCard/MainCardLoader';
@@ -8,25 +9,11 @@ import Pagination from '../../components/Pagination/Pagination';
 import s from './AllPizzas.module.scss';
 
 const AllPizzas = ({ searchValue }) => {
+	const { categoryId, sortData } = useSelector((state) => state.filterSlice);
+	
 	const [pizzasDate, setPizzasDate] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	
-	const [categoryId, setCategoryId] = useState(0);
-	const [sortData, setSortData] = useState({
-		name: 'Сначала популярные',
-		sortBy: 'rating',
-		order: 'desc',
-	});
-	
 	const [currentPage, setCurrentPage] = useState(1);
-	
-	const categoryHandler = (i) => {
-		setCategoryId(i);
-	};
-	
-	const sortDataHandler = (obj) => {
-		setSortData(obj);
-	};
 	
 	useEffect(() => {
 		const fetchData = async () => {
@@ -54,14 +41,8 @@ const AllPizzas = ({ searchValue }) => {
 	return (
 		<section className={s.allPizzas}>
 			<div className={s.top}>
-				<Categories
-					categoryId={categoryId}
-					categoryHandler={categoryHandler}
-				/>
-				<Sort
-					sortData={sortData}
-					sortDataHandler={sortDataHandler}
-				/>
+				<Categories />
+				<Sort />
 			</div>
 			<h2>Все пиццы</h2>
 			<div className={s.pizzasWrapper}>
@@ -74,7 +55,13 @@ const AllPizzas = ({ searchValue }) => {
 			</div>
 			{
 				!pizzasDate.length
-					? <p className={s.nothing}>Ничего не найдено :(</p>
+					? <>
+						<p className={s.nothing}>Ничего не найдено :(</p>
+						<Pagination
+							changePageHandler={(pageNumber) => setCurrentPage(pageNumber)}
+						/>
+					</>
+					
 					: <Pagination
 						changePageHandler={(pageNumber) => setCurrentPage(pageNumber)}
 					/>

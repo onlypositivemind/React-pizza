@@ -1,18 +1,24 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSortData } from '../../redux/slices/filterSlice';
 import Arrow from '../../shared/images/icons/sort-arrow.svg';
 import s from './Sort.module.scss';
 
-const Sort = ({ sortData, sortDataHandler }) => {
+const sortingList = [
+	{ name: 'Сначала популярные', sortBy: 'rating', order: 'desc' },
+	{ name: 'Сначала недорогие', sortBy: 'price', order: 'asc' },
+	{ name: 'Сначала дорогие', sortBy: 'price', order: 'desc' },
+];
+
+const Sort = () => {
+	const sortData = useSelector((state) => state.filterSlice.sortData);
+	const dispatch = useDispatch();
+	
 	const [isOpen, setIsOpen] = useState(false);
-	const sortingList = [
-		{ name: 'Сначала популярные', sortBy: 'rating', order: 'desc' },
-		{ name: 'Сначала недорогие', sortBy: 'price', order: 'asc' },
-		{ name: 'Сначала дорогие', sortBy: 'price', order: 'desc' },
-	];
 	
 	const onClickListItem = (obj) => {
-		sortDataHandler(obj);
 		setIsOpen(false);
+		dispatch(setSortData(obj));
 	};
 	
 	return (
