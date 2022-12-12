@@ -1,11 +1,34 @@
 import { Link, Outlet } from 'react-router-dom';
+import { useCallback, useRef, useState } from 'react';
+import debounce from 'lodash.debounce';
 import Logo from '../../shared/images/logo.jpg';
 import BasketSVG from '../../shared/images/icons/header-basket.svg';
 import Search from '../../shared/images/icons/search.svg';
 import Clear from '../../shared/images/icons/clear.svg';
 import s from './Layout.module.scss';
 
-const Layout = ({ searchValue, setSearchValue }) => {
+const Layout = ({ setSearchValue }) => {
+	const [localValue, setLocalValue] = useState('');
+	
+	const inputSearchRef = useRef();
+	
+	const inputClearHandler = () => {
+		setSearchValue('');
+		setLocalValue('');
+		inputSearchRef.current.focus();
+	};
+	
+	const updateSearchValue = useCallback(
+		debounce((str) => {
+			setSearchValue(str);
+		}, 400),
+		[]
+	);
+	
+	const inputChangeHandler = (event) => {
+		setLocalValue(event.target.value);
+		updateSearchValue(event.target.value);
+	};
 	
 	return (
 		<div className={s.wrapper}>
@@ -23,15 +46,16 @@ const Layout = ({ searchValue, setSearchValue }) => {
 				<div className={s.searchBlock}>
 					<img src={Search} className={s.searchIcon} alt="Search" />
 					<input
-						value={searchValue}
-						onChange={(event) => setSearchValue(event.target.value)}
+						ref={inputSearchRef}
+						value={localValue}
+						onChange={inputChangeHandler}
 						type="text"
 						placeholder="Поиск пицц..."
 					/>
 					{
-						searchValue &&
+						localValue &&
 						<img
-							onClick={() => setSearchValue('')}
+							onClick={inputClearHandler}
 							src={Clear}
 							className={s.clearIcon}
 							alt="Clear" />

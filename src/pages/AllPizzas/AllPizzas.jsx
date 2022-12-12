@@ -9,11 +9,14 @@ import Pagination from '../../components/Pagination/Pagination';
 import s from './AllPizzas.module.scss';
 
 const AllPizzas = ({ searchValue }) => {
-	const { categoryId, sortData } = useSelector((state) => state.filterSlice);
+	const {
+		categoryId,
+		sortData,
+		currentPage
+	} = useSelector((state) => state.filterSlice);
 	
 	const [pizzasDate, setPizzasDate] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [currentPage, setCurrentPage] = useState(1);
 	
 	useEffect(() => {
 		const fetchData = async () => {
@@ -54,17 +57,9 @@ const AllPizzas = ({ searchValue }) => {
 				}
 			</div>
 			{
-				!pizzasDate.length
-					? <>
-						<p className={s.nothing}>Ничего не найдено :(</p>
-						<Pagination
-							changePageHandler={(pageNumber) => setCurrentPage(pageNumber)}
-						/>
-					</>
-					
-					: <Pagination
-						changePageHandler={(pageNumber) => setCurrentPage(pageNumber)}
-					/>
+				!pizzasDate.length && !isLoading
+					? <p className={s.nothing}>Ничего не найдено :(</p>
+					: <Pagination />
 			}
 		</section>
 	);

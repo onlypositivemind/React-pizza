@@ -24,6 +24,7 @@
 				color: #fff;
 			}
 		}
+		
 	}
 
 	:global {
@@ -33,5 +34,19 @@
 				color: #fff;
 			}
 		}
+
+		li.disabled {
+			cursor: default;
+
+			a {
+				opacity: 0.2;
+
+				&:hover {
+					background-color: transparent;
+					color: var(--color-main);
+				}
+			}
+		}
 	}
+
 }
