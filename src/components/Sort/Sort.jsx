@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSortData } from '../../redux/slices/filterSlice';
 import Arrow from '../../shared/images/icons/sort-arrow.svg';
@@ -15,14 +15,27 @@ const Sort = () => {
 	const dispatch = useDispatch();
 	
 	const [isOpen, setIsOpen] = useState(false);
+	const sortBlockRef = useRef();
+	
+	const popupClosingListener = (event) => {
+		if (!event.path.includes(sortBlockRef.current)) {
+			setIsOpen(false);
+			document.body.removeEventListener('click', popupClosingListener);
+		}
+	};
 	
 	const onClickListItem = (obj) => {
 		setIsOpen(false);
 		dispatch(setSortData(obj));
 	};
 	
+	const popupHandler = () => {
+		setIsOpen(!isOpen);
+		document.body.addEventListener('click', popupClosingListener);
+	};
+	
 	return (
-		<div className={s.sort}>
+		<div ref={sortBlockRef} className={s.sort}>
 			<img
 				src={Arrow}
 				className={isOpen ? `${s.arrow} ${s.active}` : s.arrow}
@@ -31,7 +44,7 @@ const Sort = () => {
 			<p className={s.title}>Сортировка:</p>
 			<p
 				className={s.subtitle}
-				onClick={() => setIsOpen(!isOpen)}
+				onClick={popupHandler}
 			>
 				{sortData.name}
 			</p>
@@ -48,7 +61,6 @@ const Sort = () => {
 						)}
 				</ul>
 			</div>
-		
 		</div>
 	);
 };

@@ -12,7 +12,7 @@ const AllPizzas = ({ searchValue }) => {
 	const {
 		categoryId,
 		sortData,
-		currentPage
+		currentPage,
 	} = useSelector((state) => state.filterSlice);
 	
 	const [pizzasDate, setPizzasDate] = useState([]);
@@ -41,6 +41,9 @@ const AllPizzas = ({ searchValue }) => {
 		fetchData();
 	}, [categoryId, sortData, searchValue, currentPage]);
 	
+	const skeleton = [...Array(4)].map((_, i) => <MainCardLoader key={i} />);
+	const pizzas = pizzasDate.map(obj => <MainCard key={obj.id} {...obj} />);
+	
 	return (
 		<section className={s.allPizzas}>
 			<div className={s.top}>
@@ -48,14 +51,7 @@ const AllPizzas = ({ searchValue }) => {
 				<Sort />
 			</div>
 			<h2>Все пиццы</h2>
-			<div className={s.pizzasWrapper}>
-				{
-					isLoading
-						? [...Array(4)].map((_, index) => <MainCardLoader
-							key={index} />)
-						: pizzasDate.map(obj => <MainCard key={obj.id} {...obj} />)
-				}
-			</div>
+			<div className={s.pizzasWrapper}>{isLoading ? skeleton : pizzas}</div>
 			{
 				!pizzasDate.length && !isLoading
 					? <p className={s.nothing}>Ничего не найдено :(</p>

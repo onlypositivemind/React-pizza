@@ -40,7 +40,7 @@
 	padding: 6px;
 	width: 100%;
 	overflow: hidden;
-	background-color: #f3f3f3;
+	background-color: rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 	font-weight: 700;
 }
@@ -91,6 +91,7 @@
 }
 
 .addButton {
+	position: relative;
 	width: 150px;
 	height: 37px;
 	overflow: hidden;
@@ -110,7 +111,16 @@
 
 	span {
 		font-weight: 700;
-		font-size: 16px;
+		font-size: var(--font-size-s);
+	}
+
+	.qty {
+		position: absolute;
+		top: 1px;
+		right: 9px;
+		width: 20px;
+		height: 20px;
+		font-size: var(--font-size-xs);
 	}
 
 	@media (any-hover: hover) {

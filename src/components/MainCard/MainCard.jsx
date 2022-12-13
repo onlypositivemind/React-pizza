@@ -1,11 +1,28 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../../redux/slices/basketSlice';
 import s from './MainCard.module.scss';
 
-const MainCard = ({ name, price, imageUrl, sizes, types }) => {
-	const typesName = ['тонкое', 'традиционное'];
-	
+const typesName = ['тонкое', 'традиционное'];
+
+const MainCard = ({ id, name, price, imageUrl, sizes, types }) => {
 	const [activeType, setActiveType] = useState(0);
 	const [activeSize, setActiveSize] = useState(0);
+	
+	const { count } = useSelector((state) => state.basketSlice.items.find(obj => obj.id === id)) || 0;
+	const dispatch = useDispatch();
+	
+	const onClickAdd = () => {
+		const item = {
+			id,
+			name,
+			price,
+			imageUrl,
+			type: typesName[activeType],
+			size: activeSize,
+		};
+		dispatch(addItem(item));
+	};
 	
 	const onClickType = (i) => {
 		setActiveType(i);
@@ -47,7 +64,7 @@ const MainCard = ({ name, price, imageUrl, sizes, types }) => {
 			</div>
 			<div className={s.bottom}>
 				<p>от {price} ₽</p>
-				<button className={s.addButton}>
+				<button className={s.addButton} onClick={onClickAdd}>
 					<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
 					     xmlns="http://www.w3.org/2000/svg">
 						<path
@@ -55,6 +72,7 @@ const MainCard = ({ name, price, imageUrl, sizes, types }) => {
 							fill="white" />
 					</svg>
 					<span>Добавить</span>
+					{!!count && <span className={s.qty}>{count}</span>}
 				</button>
 			</div>
 		</div>
