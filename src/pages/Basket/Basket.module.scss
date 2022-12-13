@@ -1,6 +1,73 @@
-.emptyBasket, .top {
+.contentHeader,
+.left,
+.right,
+.info,
+.buttons,
+.emptyBasket,
+.top, {
 	display: flex;
 	align-items: center;
+}
+
+.content {
+	min-height: calc(100vh - 285px);
+	margin: 0 auto;
+	max-width: 850px;
+	display: flex;
+	flex-direction: column;
+}
+
+.contentHeader {
+	margin-bottom: 30px;
+	justify-content: space-between;
+}
+
+.left {
+	gap: 15px;
+
+	h2 {
+		font-weight: 700;
+		font-size: var(--font-size-xxxl);
+	}
+}
+
+.right {
+	gap: 10px;
+	cursor: pointer;
+
+	p {
+		font-size: var(--font-size-s);
+		color: var(--subtitle-color-main);
+	}
+}
+
+.cardsWrapper {
+	margin-bottom: 30px;
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.info {
+	margin-bottom: 40px;
+	justify-content: space-between;
+
+	p {
+		font-size: var(--font-size-l);
+
+		span {
+			font-weight: 700;
+		}
+	}
+
+	.price {
+		color: var(--color-main);
+	}
+}
+
+.buttons {
+	justify-content: space-between;
 }
 
 .emptyBasket {

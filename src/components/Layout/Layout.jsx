@@ -21,8 +21,8 @@ const Layout = ({ setSearchValue }) => {
 						</div>
 					</div>
 				</Link>
-				<SearchInput setSearchValue={setSearchValue} />
 				<div className={s.headerRight}>
+					<SearchInput setSearchValue={setSearchValue} />
 					<Link to="/basket">
 						<div className={s.basketContent}>
 							<span>{totalPrice} ₽</span>

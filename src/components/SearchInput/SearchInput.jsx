@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 import SearchSVG from '../../shared/images/icons/search.svg';
 import ClearSVG from '../../shared/images/icons/clear.svg';
@@ -7,6 +8,7 @@ import s from './SearchInput.module.scss';
 const SearchInput = ({ setSearchValue }) => {
 	const [localValue, setLocalValue] = useState('');
 	const inputSearchRef = useRef();
+	const location = useLocation();
 	
 	const inputClearHandler = () => {
 		setSearchValue('');
@@ -28,7 +30,9 @@ const SearchInput = ({ setSearchValue }) => {
 	};
 	
 	return (
-		<div className={s.searchBlock}>
+		<div
+			className={location.pathname === '/' ? s.searchBlock : `${s.searchBlock} ${s.hidden}`}
+		>
 			<img src={SearchSVG} className={s.searchIcon} alt="Search" />
 			<input
 				ref={inputSearchRef}

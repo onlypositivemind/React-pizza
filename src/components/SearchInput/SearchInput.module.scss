@@ -1,7 +1,9 @@
 .searchBlock {
-	margin-left: auto;
 	position: relative;
 	width: 250px;
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 
 	.searchIcon,
 	.clearIcon {
@@ -36,4 +38,9 @@
 			border-color: var(--color-main);
 		}
 	}
+}
+
+.searchBlock.hidden {
+	opacity: 0;
+	visibility: hidden;
 }

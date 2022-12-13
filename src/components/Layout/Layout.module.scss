@@ -10,6 +10,7 @@
 
 .header,
 .headerLeft,
+.headerRight,
 .basketContent,
 .basketContent p {
 	display: flex;
@@ -21,6 +22,7 @@
 	padding: 35px 0;
 	gap: 40px;
 	border-bottom: 1px solid #fff3d6;
+	justify-content: space-between;
 }
 
 .headerLeft {
@@ -63,6 +65,7 @@
 .headerRight {
 	font-weight: 700;
 	font-size: var(--font-size-s);
+	gap: 80px;
 
 	a {
 		color: #fff;
