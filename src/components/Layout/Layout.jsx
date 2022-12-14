@@ -7,6 +7,7 @@ import s from './Layout.module.scss';
 
 const Layout = ({ setSearchValue }) => {
 	const { totalPrice, totalQty } = useSelector((state) => state.basketSlice);
+	const { status } = useSelector((state) => state.pizzaSlice);
 	
 	return (
 		<div className={s.wrapper}>
@@ -21,18 +22,21 @@ const Layout = ({ setSearchValue }) => {
 						</div>
 					</div>
 				</Link>
-				<div className={s.headerRight}>
-					<SearchInput setSearchValue={setSearchValue} />
-					<Link to="/basket">
-						<div className={s.basketContent}>
-							<span>{totalPrice} ₽</span>
-							<p>
-								<img src={BasketSVG} alt="Basket icon" />
-								<span>{totalQty}</span>
-							</p>
-						</div>
-					</Link>
-				</div>
+				{
+					status !== 'error' &&
+					<div className={s.headerRight}>
+						<SearchInput setSearchValue={setSearchValue} />
+						<Link to="/basket">
+							<div className={s.basketContent}>
+								<span>{totalPrice} ₽</span>
+								<p>
+									<img src={BasketSVG} alt="Basket icon" />
+									<span>{totalQty}</span>
+								</p>
+							</div>
+						</Link>
+					</div>
+				}
 			</header>
 			
 			<main className={s.main}>

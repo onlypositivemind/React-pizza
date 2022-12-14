@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPizzas } from '../../redux/slices/pizzaSlice';
 import MainCard from '../../components/MainCard/MainCard';
 import MainCardLoader from '../../components/MainCard/MainCardLoader';
 import Categories from '../../components/Categories/Categories';
@@ -15,34 +15,36 @@ const AllPizzas = ({ searchValue }) => {
 		currentPage,
 	} = useSelector((state) => state.filterSlice);
 	
-	const [pizzasDate, setPizzasDate] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
+	const { items, status } = useSelector((state) => state.pizzaSlice);
+	const dispatch = useDispatch();
 	
 	useEffect(() => {
 		const fetchData = async () => {
-			try {
-				setIsLoading(true);
-				
-				const { data } = await axios.get(`
-				https://639487884df9248eada4f54f.mockapi.io/all-pizzas?
-				page=${currentPage}&limit=4&
-				${categoryId ? 'category=' + categoryId : ''}
-				&sortBy=${sortData.sortBy}&order=${sortData.order}
-				${searchValue ? `&search=${searchValue}` : ''}
-				`);
-				
-				setPizzasDate(data);
-			} catch (error) {
-				alert('Не удалось загрузить данные');
-			} finally {
-				setIsLoading(false);
-			}
+			
+			dispatch(
+				fetchPizzas({
+					currentPage,
+					categoryId,
+					sortData,
+					searchValue,
+				})
+			);
+			
 		};
 		fetchData();
-	}, [categoryId, sortData, searchValue, currentPage]);
+	}, [categoryId, sortData, searchValue, currentPage, dispatch]);
 	
 	const skeleton = [...Array(4)].map((_, i) => <MainCardLoader key={i} />);
-	const pizzas = pizzasDate.map(obj => <MainCard key={obj.id} {...obj} />);
+	const pizzas = items.map(obj => <MainCard key={obj.id} {...obj} />);
+	
+	if (status === 'error') {
+		return (
+			<section className={s.error}>
+				<h3>К сожалению, не удалось получить пиццы :(</h3>
+				<p>Попробуйте повторить попытку позже</p>
+			</section>
+		);
+	}
 	
 	return (
 		<section className={s.allPizzas}>
@@ -51,11 +53,13 @@ const AllPizzas = ({ searchValue }) => {
 				<Sort />
 			</div>
 			<h2>Все пиццы</h2>
-			<div className={s.pizzasWrapper}>{isLoading ? skeleton : pizzas}</div>
+			<div className={s.pizzasWrapper}>
+				{status === 'loading' ? skeleton : pizzas}
+			</div>
 			{
-				!pizzasDate.length && !isLoading
+				!items.length && status !== 'loading'
 					? <p className={s.nothing}>Ничего не найдено :(</p>
-					: <Pagination />
+					: !categoryId && <Pagination />
 			}
 		</section>
 	);
