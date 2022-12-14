@@ -11,7 +11,7 @@ const sortingList = [
 ];
 
 const Sort = () => {
-	const sortData = useSelector((state) => state.filterSlice.sortData);
+	const { sortData } = useSelector((state) => state.filterSlice);
 	const dispatch = useDispatch();
 	
 	const [isOpen, setIsOpen] = useState(false);

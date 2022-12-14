@@ -1,17 +1,20 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import debounce from 'lodash.debounce';
+import { setSearchValue } from '../../redux/slices/filterSlice';
 import SearchSVG from '../../shared/images/icons/search.svg';
 import ClearSVG from '../../shared/images/icons/clear.svg';
 import s from './SearchInput.module.scss';
 
-const SearchInput = ({ setSearchValue }) => {
+const SearchInput = () => {
+	const dispatch = useDispatch();
 	const [localValue, setLocalValue] = useState('');
 	const inputSearchRef = useRef();
 	const location = useLocation();
 	
 	const inputClearHandler = () => {
-		setSearchValue('');
+		dispatch(setSearchValue(''));
 		setLocalValue('');
 		inputSearchRef.current.focus();
 	};
@@ -19,7 +22,7 @@ const SearchInput = ({ setSearchValue }) => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const updateSearchValue = useCallback(
 		debounce((str) => {
-			setSearchValue(str);
+			dispatch(setSearchValue(str));
 		}, 300),
 		[]
 	);

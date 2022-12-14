@@ -8,11 +8,12 @@ import Sort from '../../components/Sort/Sort';
 import Pagination from '../../components/Pagination/Pagination';
 import s from './AllPizzas.module.scss';
 
-const AllPizzas = ({ searchValue }) => {
+const AllPizzas = () => {
 	const {
 		categoryId,
 		sortData,
 		currentPage,
+		searchValue
 	} = useSelector((state) => state.filterSlice);
 	
 	const { items, status } = useSelector((state) => state.pizzaSlice);

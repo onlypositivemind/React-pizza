@@ -5,7 +5,7 @@ import Logo from '../../shared/images/logo.jpg';
 import BasketSVG from '../../shared/images/icons/header-basket.svg';
 import s from './Layout.module.scss';
 
-const Layout = ({ setSearchValue }) => {
+const Layout = () => {
 	const { totalPrice, totalQty } = useSelector((state) => state.basketSlice);
 	const { status } = useSelector((state) => state.pizzaSlice);
 	
@@ -25,7 +25,7 @@ const Layout = ({ setSearchValue }) => {
 				{
 					status !== 'error' &&
 					<div className={s.headerRight}>
-						<SearchInput setSearchValue={setSearchValue} />
+						<SearchInput />
 						<Link to="/basket">
 							<div className={s.basketContent}>
 								<span>{totalPrice} ₽</span>

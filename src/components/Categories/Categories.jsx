@@ -5,7 +5,7 @@ import s from './Categories.module.scss';
 const categories = ['Все', 'Мясные', 'Острые', 'С грибами', 'Без мяса'];
 
 const Categories = () => {
-	const categoryId = useSelector((state) => state.filterSlice.categoryId);
+	const { categoryId } = useSelector((state) => state.filterSlice);
 	const dispatch = useDispatch();
 	
 	const categoryHandler = (i) => {
