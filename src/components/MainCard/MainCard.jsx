@@ -19,7 +19,7 @@ const MainCard = ({ id, name, price, imageUrl, sizes, types }) => {
 			price,
 			imageUrl,
 			type: typesName[activeType],
-			size: activeSize,
+			size: sizes[activeSize],
 		};
 		dispatch(addItem(item));
 	};

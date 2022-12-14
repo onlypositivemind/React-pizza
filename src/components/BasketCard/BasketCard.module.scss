@@ -10,6 +10,7 @@
 	align-items: center;
 	grid-template-rows: 1fr;
 	grid-template-columns: 100px 1fr 100px 1fr 40px;
+	border-bottom: 1px solid #eee;
 }
 
 .pizzaImage {
@@ -39,6 +40,17 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
+
+	.minus {
+		opacity: 1;
+		visibility: visible;
+		transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+	}
+
+	.minus.hidden {
+		opacity: 0;
+		visibility: hidden;
+	}
 }
 
 .price {

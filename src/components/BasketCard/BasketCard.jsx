@@ -1,26 +1,51 @@
+import { useDispatch } from 'react-redux';
+import { addItem, deleteItem, minusItem } from '../../redux/slices/basketSlice';
 import DeleteSVG from '../../shared/images/icons/delete-basket-i.svg';
 import MinusSVG from '../../shared/images/icons/basket-minus.svg';
 import PlusSVG from '../../shared/images/icons/basket-plus.svg';
 import s from './BasketCard.module.scss';
 
-const BasketCard = () => {
+const BasketCard = ({ id, name, price, imageUrl, type, size, count }) => {
+	const dispatch = useDispatch();
+	
+	const onClickPlus = () => {
+		dispatch(addItem({ id }));
+	};
+	const onClickMinus = () => {
+		dispatch(minusItem(id));
+	};
+	
+	const onClickDelete = () => {
+		dispatch(deleteItem(id));
+	};
+	
 	return (
 		<div className={s.cardWrapper}>
 			<img
-				src="https://dodopizza-a.akamaihd.net/static/Img/Products/27c9bbd0af3a4d1d84a086d9c2f1656d_292x292.webp"
+				src={imageUrl}
 				className={s.pizzaImage}
 				alt="Pizza" />
 			<div className={s.text}>
-				<p>Сырный цыпленок</p>
-				<span>тонкое тесто, 26 см.</span>
+				<p>{name}</p>
+				<span>{type}, {size} см.</span>
 			</div>
 			<div className={s.qtyBlock}>
-				<img src={MinusSVG} alt="Minus" />
-				<p>2</p>
-				<img src={PlusSVG} alt="Plus" />
+				<img
+					src={MinusSVG}
+					className={count > 1 ? s.minus : `${s.minus} ${s.hidden}`}
+					onClick={onClickMinus}
+					alt="Minus"
+				/>
+				<p>{count}</p>
+				<img src={PlusSVG} onClick={onClickPlus} alt="Plus" />
 			</div>
-			<p className={s.price}>770 ₽</p>
-			<img src={DeleteSVG} className={s.delete} alt="Delete" />
+			<p className={s.price}>{price * count} ₽</p>
+			<img
+				src={DeleteSVG}
+				className={s.delete}
+				onClick={onClickDelete}
+				alt="Delete"
+			/>
 		</div>
 	);
 };
