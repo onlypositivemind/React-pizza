@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../redux/slices/basketSlice';
+import { Link } from 'react-router-dom';
 import s from './MainCard.module.scss';
 
 const typesName = ['тонкое', 'традиционное'];
@@ -34,9 +35,11 @@ const MainCard = ({ id, name, price, imageUrl, sizes, types }) => {
 	
 	return (
 		<div className={s.cardWrapper}>
-			<div className={s.pizzaImage}>
-				<img src={imageUrl} alt="Pizza" />
-			</div>
+			<Link to={`/pizza/${id}`}>
+				<div className={s.pizzaImage}>
+					<img src={imageUrl} alt="Pizza" />
+				</div>
+			</Link>
 			<h3>{name}</h3>
 			<div className={s.selectorBlock}>
 				<ul className={s.doughSelection}>

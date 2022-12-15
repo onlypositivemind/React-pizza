@@ -1,0 +1,42 @@
+.content,
+.info {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.content {
+	height: calc(100vh - 300px);
+	flex-direction: column;
+}
+
+.info {
+	margin-bottom: 70px;
+	gap: 50px;
+}
+
+.image {
+	width: 250px;
+	height: 250px;
+	pointer-events: none;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.title {
+	margin-bottom: 15px;
+	font-weight: 600;
+	font-size: var(--font-size-xl);
+}
+
+.descr {
+	max-width: 500px;
+	text-align: justify;
+	font-size: var(--font-size-l);
+	line-height: 25px;
+	color: var(--subtitle-color-main);
+}
