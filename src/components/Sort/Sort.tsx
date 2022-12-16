@@ -1,30 +1,36 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSortData } from '../../redux/slices/filterSlice';
 import Arrow from '../../shared/images/icons/sort-arrow.svg';
 import s from './Sort.module.scss';
 
-const sortingList = [
+type SortItem = {
+	name: string;
+	sortBy: string;
+	order: string;
+}
+
+const sortingList: SortItem[] = [
 	{ name: 'Сначала популярные', sortBy: 'rating', order: 'desc' },
 	{ name: 'Сначала недорогие', sortBy: 'price', order: 'asc' },
 	{ name: 'Сначала дорогие', sortBy: 'price', order: 'desc' },
 ];
 
-const Sort = () => {
-	const { sortData } = useSelector((state) => state.filterSlice);
+const Sort: React.FC = () => {
+	const { sortData } = useSelector((state: any) => state.filterSlice);
 	const dispatch = useDispatch();
 	
 	const [isOpen, setIsOpen] = useState(false);
-	const sortBlockRef = useRef();
+	const sortBlockRef = useRef<HTMLDivElement>(null);
 	
-	const popupClosingListener = (event) => {
-		if (!event.path.includes(sortBlockRef.current)) {
+	const popupClosingListener = (event: any) => {
+		if (!event.path.includes(sortBlockRef?.current)) {
 			setIsOpen(false);
 			document.body.removeEventListener('click', popupClosingListener);
 		}
 	};
 	
-	const onClickListItem = (obj) => {
+	const onClickListItem = (obj: SortItem) => {
 		setIsOpen(false);
 		dispatch(setSortData(obj));
 	};
@@ -54,7 +60,7 @@ const Sort = () => {
 						sortingList.map((obj) => <li
 								key={obj.name}
 								onClick={() => onClickListItem(obj)}
-								className={sortData.name === obj.name ? s.active : null}
+								className={sortData.name === obj.name ? s.active : undefined}
 							>
 								{obj.name}
 							</li>

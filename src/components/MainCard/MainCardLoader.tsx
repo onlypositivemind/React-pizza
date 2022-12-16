@@ -1,6 +1,7 @@
+import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-const MainCardLoader = () => {
+const MainCardLoader: React.FC = () => {
 	return (
 		<ContentLoader
 			speed={1}

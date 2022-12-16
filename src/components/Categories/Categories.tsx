@@ -1,14 +1,15 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId } from '../../redux/slices/filterSlice';
 import s from './Categories.module.scss';
 
 const categories = ['Все', 'Мясные', 'Острые', 'С грибами', 'Без мяса'];
 
-const Categories = () => {
-	const { categoryId } = useSelector((state) => state.filterSlice);
+const Categories: React.FC = () => {
+	const { categoryId } = useSelector((state: any) => state.filterSlice);
 	const dispatch = useDispatch();
 	
-	const categoryHandler = (i) => {
+	const categoryHandler = (i: number) => {
 		dispatch(setCategoryId(i));
 	};
 	
@@ -16,13 +17,15 @@ const Categories = () => {
 		<div className={s.categories}>
 			<ul>
 				{
-					categories.map((str, index) => <li
-							key={str}
-							onClick={() => categoryHandler(index)}
-							className={categoryId === index ? s.active : null}
-						>
-							{str}
-						</li>
+					categories.map((str, index) => (
+							<li
+								key={str}
+								onClick={() => categoryHandler(index)}
+								className={categoryId === index ? s.active : undefined}
+							>
+								{str}
+							</li>
+						)
 					)}
 			</ul>
 		</div>

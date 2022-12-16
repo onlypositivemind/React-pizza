@@ -7,16 +7,16 @@ import SearchSVG from '../../shared/images/icons/search.svg';
 import ClearSVG from '../../shared/images/icons/clear.svg';
 import s from './SearchInput.module.scss';
 
-const SearchInput = () => {
+const SearchInput: React.FC = () => {
 	const dispatch = useDispatch();
-	const [localValue, setLocalValue] = useState('');
-	const inputSearchRef = useRef();
+	const [localValue, setLocalValue] = useState<string>('');
+	const inputSearchRef = useRef<HTMLInputElement>(null);
 	const location = useLocation();
 	
 	const inputClearHandler = () => {
 		dispatch(setSearchValue(''));
 		setLocalValue('');
-		inputSearchRef.current.focus();
+		inputSearchRef.current?.focus();
 	};
 	
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,7 +27,7 @@ const SearchInput = () => {
 		[]
 	);
 	
-	const inputChangeHandler = (event) => {
+	const inputChangeHandler = (event: any) => {
 		setLocalValue(event.target.value);
 		updateSearchValue(event.target.value);
 	};

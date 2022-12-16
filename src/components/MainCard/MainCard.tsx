@@ -1,16 +1,33 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../redux/slices/basketSlice';
 import { Link } from 'react-router-dom';
 import s from './MainCard.module.scss';
 
-const typesName = ['тонкое', 'традиционное'];
+const typesName: string[] = ['тонкое', 'традиционное'];
 
-const MainCard = ({ id, name, price, imageUrl, sizes, types }) => {
-	const [activeType, setActiveType] = useState(0);
-	const [activeSize, setActiveSize] = useState(0);
+type MainCardProps = {
+	id: string;
+	name: string;
+	price: number;
+	imageUrl: string;
+	sizes: number[];
+	types: number[];
+}
+
+const MainCard: React.FC<MainCardProps> = (
+	{
+		id,
+		name,
+		price,
+		imageUrl,
+		sizes,
+		types
+	}) => {
+	const [activeType, setActiveType] = useState<number>(0);
+	const [activeSize, setActiveSize] = useState<number>(0);
 	
-	const { count } = useSelector((state) => state.basketSlice.items.find(obj => obj.id === id)) || 0;
+	const { count } = useSelector((state: any) => state.basketSlice.items.find((obj: { id: string }) => obj.id === id)) || 0;
 	const dispatch = useDispatch();
 	
 	const onClickAdd = () => {
@@ -25,11 +42,11 @@ const MainCard = ({ id, name, price, imageUrl, sizes, types }) => {
 		dispatch(addItem(item));
 	};
 	
-	const onClickType = (i) => {
+	const onClickType = (i: number) => {
 		setActiveType(i);
 	};
 	
-	const onClickSize = (i) => {
+	const onClickSize = (i: number) => {
 		setActiveSize(i);
 	};
 	
@@ -46,7 +63,7 @@ const MainCard = ({ id, name, price, imageUrl, sizes, types }) => {
 					{
 						types.map((typeNumber, index) => <li
 								key={typeNumber}
-								className={activeType === index ? s.active : null}
+								className={activeType === index ? s.active : undefined}
 								onClick={() => onClickType(index)}
 							>
 								{typesName[typeNumber]}
@@ -57,7 +74,7 @@ const MainCard = ({ id, name, price, imageUrl, sizes, types }) => {
 					{
 						sizes.map((size, index) => <li
 								key={size}
-								className={activeSize === index ? s.active : null}
+								className={activeSize === index ? s.active : undefined}
 								onClick={() => onClickSize(index)}
 							>
 								{`${size} см.`}

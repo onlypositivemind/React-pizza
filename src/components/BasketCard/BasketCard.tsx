@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem, deleteItem, minusItem } from '../../redux/slices/basketSlice';
 import DeleteSVG from '../../shared/images/icons/delete-basket-i.svg';
@@ -5,7 +6,26 @@ import MinusSVG from '../../shared/images/icons/basket-minus.svg';
 import PlusSVG from '../../shared/images/icons/basket-plus.svg';
 import s from './BasketCard.module.scss';
 
-const BasketCard = ({ id, name, price, imageUrl, type, size, count }) => {
+type BasketCardProps = {
+	id: string;
+	name: string;
+	price: number;
+	imageUrl: string;
+	type: string;
+	size: number;
+	count: number;
+}
+
+const BasketCard: React.FC<BasketCardProps> = (
+	{
+		id,
+		name,
+		price,
+		imageUrl,
+		type,
+		size,
+		count
+	}) => {
 	const dispatch = useDispatch();
 	
 	const onClickPlus = () => {

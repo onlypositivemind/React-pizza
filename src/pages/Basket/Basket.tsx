@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearItems } from '../../redux/slices/basketSlice';
 import EmptyBasket from './EmptyBasket';
@@ -8,12 +9,12 @@ import BasketSVG from '../../shared/images/icons/basket.svg';
 import DeleteSVG from '../../shared/images/icons/trash.svg';
 import s from './Basket.module.scss';
 
-const Basket = () => {
+const Basket: React.FC = () => {
 	const {
 		items,
 		totalPrice,
 		totalQty
-	} = useSelector((state) => state.basketSlice);
+	} = useSelector((state: any) => state.basketSlice);
 	
 	const dispatch = useDispatch();
 	
@@ -39,7 +40,7 @@ const Basket = () => {
 			</div>
 			<div className={s.cardsWrapper}>
 				{
-					items.map(item => <BasketCard key={item.id} {...item} />)
+					items.map((item: any) => <BasketCard key={item.id} {...item} />)
 				}
 			</div>
 			<div className={s.info}>

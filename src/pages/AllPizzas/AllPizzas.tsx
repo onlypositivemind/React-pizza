@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPizzas } from '../../redux/slices/pizzaSlice';
 import MainCard from '../../components/MainCard/MainCard';
@@ -8,21 +8,22 @@ import Sort from '../../components/Sort/Sort';
 import Pagination from '../../components/Pagination/Pagination';
 import s from './AllPizzas.module.scss';
 
-const AllPizzas = () => {
+const AllPizzas: React.FC = () => {
 	const {
 		categoryId,
 		sortData,
 		currentPage,
 		searchValue
-	} = useSelector((state) => state.filterSlice);
+	} = useSelector((state: any) => state.filterSlice);
 	
-	const { items, status } = useSelector((state) => state.pizzaSlice);
+	const { items, status } = useSelector((state: any) => state.pizzaSlice);
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
 		const fetchData = async () => {
 			
 			dispatch(
+				// @ts-ignore
 				fetchPizzas({
 					currentPage,
 					categoryId,
@@ -36,7 +37,7 @@ const AllPizzas = () => {
 	}, [categoryId, sortData, searchValue, currentPage, dispatch]);
 	
 	const skeleton = [...Array(4)].map((_, i) => <MainCardLoader key={i} />);
-	const pizzas = items.map(obj => <MainCard key={obj.id} {...obj} />);
+	const pizzas = items.map((obj: any) => <MainCard key={obj.id} {...obj} />);
 	
 	if (status === 'error') {
 		return (
