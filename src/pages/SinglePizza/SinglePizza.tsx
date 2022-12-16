@@ -1,12 +1,15 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import BackButton from '../../components/BackButton/BackButton';
 import SinglePizzaLoader from './SinglePizzaLoader';
 import s from './SinglePizza.module.scss';
 
-const SinglePizza = () => {
-	const [pizza, setPizza] = useState({});
+const SinglePizza: React.FC = () => {
+	const [pizza, setPizza] = useState<{ name: string, imageUrl: string, }>({
+		name: '',
+		imageUrl: '',
+	});
 	const [isLoading, setIsLoading] = useState(true);
 	const { id } = useParams();
 	const navigate = useNavigate();
