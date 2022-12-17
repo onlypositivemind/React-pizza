@@ -10,6 +10,8 @@ type SortItem = {
 	order: string;
 }
 
+type M = MouseEvent & { path: Node[]; }
+
 const sortingList: SortItem[] = [
 	{ name: 'Сначала популярные', sortBy: 'rating', order: 'desc' },
 	{ name: 'Сначала недорогие', sortBy: 'price', order: 'asc' },
@@ -20,24 +22,26 @@ const Sort: React.FC = () => {
 	const { sortData } = useSelector((state: any) => state.filterSlice);
 	const dispatch = useDispatch();
 	
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const sortBlockRef = useRef<HTMLDivElement>(null);
 	
-	const popupClosingListener = (event: any) => {
-		if (!event.path.includes(sortBlockRef?.current)) {
+	const popupClosingHandler = (event: MouseEvent): void => {
+		const e = event as M;
+		
+		if (sortBlockRef.current && !e.path.includes(sortBlockRef.current)) {
 			setIsOpen(false);
-			document.body.removeEventListener('click', popupClosingListener);
+			document.body.removeEventListener('click', popupClosingHandler);
 		}
 	};
 	
-	const onClickListItem = (obj: SortItem) => {
+	const onClickListItem = (obj: SortItem): void => {
 		setIsOpen(false);
 		dispatch(setSortData(obj));
 	};
 	
-	const popupHandler = () => {
+	const popupHandler = (): void => {
 		setIsOpen(!isOpen);
-		document.body.addEventListener('click', popupClosingListener);
+		document.body.addEventListener('click', popupClosingHandler);
 	};
 	
 	return (
@@ -57,13 +61,15 @@ const Sort: React.FC = () => {
 			<div className={isOpen ? `${s.popup} ${s.active}` : s.popup}>
 				<ul>
 					{
-						sortingList.map((obj) => <li
-								key={obj.name}
-								onClick={() => onClickListItem(obj)}
-								className={sortData.name === obj.name ? s.active : undefined}
-							>
-								{obj.name}
-							</li>
+						sortingList.map((obj) => (
+								<li
+									key={obj.name}
+									onClick={() => onClickListItem(obj)}
+									className={sortData.name === obj.name ? s.active : undefined}
+								>
+									{obj.name}
+								</li>
+							)
 						)}
 				</ul>
 			</div>

@@ -8,7 +8,7 @@ const Pagination: React.FC = () => {
 	const currentPage = useSelector((state: any) => state.filterSlice.currentPage);
 	const dispatch = useDispatch();
 	
-	const changePageHandler = (i: number) => {
+	const changePageHandler = (i: number): void => {
 		dispatch(setCurrentPage(i));
 	};
 	

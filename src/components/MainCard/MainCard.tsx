@@ -4,8 +4,6 @@ import { addItem } from '../../redux/slices/basketSlice';
 import { Link } from 'react-router-dom';
 import s from './MainCard.module.scss';
 
-const typesName: string[] = ['тонкое', 'традиционное'];
-
 type MainCardProps = {
 	id: string;
 	name: string;
@@ -14,6 +12,8 @@ type MainCardProps = {
 	sizes: number[];
 	types: number[];
 }
+
+const typesName: string[] = ['тонкое', 'традиционное'];
 
 const MainCard: React.FC<MainCardProps> = (
 	{
@@ -30,7 +30,7 @@ const MainCard: React.FC<MainCardProps> = (
 	const { count } = useSelector((state: any) => state.basketSlice.items.find((obj: { id: string }) => obj.id === id)) || 0;
 	const dispatch = useDispatch();
 	
-	const onClickAdd = () => {
+	const onClickAdd = (): void => {
 		const item = {
 			id,
 			name,
@@ -42,11 +42,11 @@ const MainCard: React.FC<MainCardProps> = (
 		dispatch(addItem(item));
 	};
 	
-	const onClickType = (i: number) => {
+	const onClickType = (i: number): void => {
 		setActiveType(i);
 	};
 	
-	const onClickSize = (i: number) => {
+	const onClickSize = (i: number): void => {
 		setActiveSize(i);
 	};
 	

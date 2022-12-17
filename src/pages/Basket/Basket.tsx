@@ -18,7 +18,7 @@ const Basket: React.FC = () => {
 	
 	const dispatch = useDispatch();
 	
-	const onClickClear = () => {
+	const onClickClear = (): void => {
 		dispatch(clearItems());
 	};
 	

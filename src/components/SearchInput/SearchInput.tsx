@@ -13,7 +13,7 @@ const SearchInput: React.FC = () => {
 	const inputSearchRef = useRef<HTMLInputElement>(null);
 	const location = useLocation();
 	
-	const inputClearHandler = () => {
+	const inputClearHandler = (): void => {
 		dispatch(setSearchValue(''));
 		setLocalValue('');
 		inputSearchRef.current?.focus();
@@ -27,7 +27,7 @@ const SearchInput: React.FC = () => {
 		[]
 	);
 	
-	const inputChangeHandler = (event: any) => {
+	const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		setLocalValue(event.target.value);
 		updateSearchValue(event.target.value);
 	};

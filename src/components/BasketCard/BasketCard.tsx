@@ -28,14 +28,14 @@ const BasketCard: React.FC<BasketCardProps> = (
 	}) => {
 	const dispatch = useDispatch();
 	
-	const onClickPlus = () => {
+	const onClickPlus = (): void => {
 		dispatch(addItem({ id }));
 	};
-	const onClickMinus = () => {
+	const onClickMinus = (): void => {
 		dispatch(minusItem(id));
 	};
 	
-	const onClickDelete = () => {
+	const onClickDelete = (): void => {
 		dispatch(deleteItem(id));
 	};
 	
