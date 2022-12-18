@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSortData } from '../../redux/slices/filterSlice';
-import Arrow from '../../shared/images/icons/sort-arrow.svg';
+import { getFilterSortData, setSortData } from 'redux/slices/filterSlice';
+import Arrow from 'shared/images/icons/sort-arrow.svg';
 import s from './Sort.module.scss';
 
 type SortItem = {
@@ -19,8 +19,8 @@ const sortingList: SortItem[] = [
 ];
 
 const Sort: React.FC = () => {
-	const { sortData } = useSelector((state: any) => state.filterSlice);
 	const dispatch = useDispatch();
+	const sortData = useSelector(getFilterSortData);
 	
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const sortBlockRef = useRef<HTMLDivElement>(null);

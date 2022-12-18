@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../../redux/slices/basketSlice';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, selectFindCount } from 'redux/slices/basketSlice';
 import s from './MainCard.module.scss';
 
 type MainCardProps = {
@@ -24,11 +24,11 @@ const MainCard: React.FC<MainCardProps> = (
 		sizes,
 		types
 	}) => {
+	const dispatch = useDispatch();
+	const count = useSelector(selectFindCount(id));
+	
 	const [activeType, setActiveType] = useState<number>(0);
 	const [activeSize, setActiveSize] = useState<number>(0);
-	
-	const { count } = useSelector((state: any) => state.basketSlice.items.find((obj: { id: string }) => obj.id === id)) || 0;
-	const dispatch = useDispatch();
 	
 	const onClickAdd = (): void => {
 		const item = {

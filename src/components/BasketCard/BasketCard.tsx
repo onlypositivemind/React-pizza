@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addItem, deleteItem, minusItem } from '../../redux/slices/basketSlice';
-import DeleteSVG from '../../shared/images/icons/delete-basket-i.svg';
-import MinusSVG from '../../shared/images/icons/basket-minus.svg';
-import PlusSVG from '../../shared/images/icons/basket-plus.svg';
+import { addItem, deleteItem, minusItem } from 'redux/slices/basketSlice';
+import DeleteSVG from 'shared/images/icons/delete-basket-i.svg';
+import MinusSVG from 'shared/images/icons/basket-minus.svg';
+import PlusSVG from 'shared/images/icons/basket-plus.svg';
 import s from './BasketCard.module.scss';
 
 type BasketCardProps = {

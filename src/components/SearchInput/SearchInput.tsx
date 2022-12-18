@@ -2,9 +2,9 @@ import React, { useCallback, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import debounce from 'lodash.debounce';
-import { setSearchValue } from '../../redux/slices/filterSlice';
-import SearchSVG from '../../shared/images/icons/search.svg';
-import ClearSVG from '../../shared/images/icons/clear.svg';
+import { setSearchValue } from 'redux/slices/filterSlice';
+import SearchSVG from 'shared/images/icons/search.svg';
+import ClearSVG from 'shared/images/icons/clear.svg';
 import s from './SearchInput.module.scss';
 
 const SearchInput: React.FC = () => {

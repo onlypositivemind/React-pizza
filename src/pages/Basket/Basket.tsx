@@ -1,22 +1,24 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearItems } from '../../redux/slices/basketSlice';
+import {
+	clearItems,
+	getBasketItems,
+	getBasketTotalPrice,
+	getBasketTotalQty,
+} from 'redux/slices/basketSlice';
 import EmptyBasket from './EmptyBasket';
-import BasketCard from '../../components/BasketCard/BasketCard';
-import BackButton from '../../components/BackButton/BackButton';
-import PayButton from '../../components/PayButton/PayButton';
-import BasketSVG from '../../shared/images/icons/basket.svg';
-import DeleteSVG from '../../shared/images/icons/trash.svg';
+import BasketCard from 'components/BasketCard/BasketCard';
+import BackButton from 'components/BackButton/BackButton';
+import PayButton from 'components/PayButton/PayButton';
+import BasketSVG from 'shared/images/icons/basket.svg';
+import DeleteSVG from 'shared/images/icons/trash.svg';
 import s from './Basket.module.scss';
 
 const Basket: React.FC = () => {
-	const {
-		items,
-		totalPrice,
-		totalQty
-	} = useSelector((state: any) => state.basketSlice);
-	
 	const dispatch = useDispatch();
+	const items = useSelector(getBasketItems);
+	const totalPrice = useSelector(getBasketTotalPrice);
+	const totalQty = useSelector(getBasketTotalQty);
 	
 	const onClickClear = (): void => {
 		dispatch(clearItems());

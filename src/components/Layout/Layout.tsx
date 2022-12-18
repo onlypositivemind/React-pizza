@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import {
+	getBasketTotalPrice,
+	getBasketTotalQty,
+} from 'redux/slices/basketSlice';
+import { getPizzaStatus } from 'redux/slices/pizzaSlice';
 import SearchInput from '../SearchInput/SearchInput';
-import Logo from '../../shared/images/logo.jpg';
-import BasketSVG from '../../shared/images/icons/header-basket.svg';
+import Logo from 'shared/images/logo.jpg';
+import BasketSVG from 'shared/images/icons/header-basket.svg';
 import s from './Layout.module.scss';
 
 const Layout: React.FC = () => {
-	const {
-		totalPrice,
-		totalQty
-	} = useSelector((state: any) => state.basketSlice);
-	const { status } = useSelector((state: any) => state.pizzaSlice);
+	const totalPrice = useSelector(getBasketTotalPrice);
+	const totalQty = useSelector(getBasketTotalQty);
+	const status = useSelector(getPizzaStatus);
 	
 	return (
 		<div className={s.wrapper}>

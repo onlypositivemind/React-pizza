@@ -1,23 +1,31 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPizzas } from '../../redux/slices/pizzaSlice';
-import MainCard from '../../components/MainCard/MainCard';
-import MainCardLoader from '../../components/MainCard/MainCardLoader';
-import Categories from '../../components/Categories/Categories';
-import Sort from '../../components/Sort/Sort';
-import Pagination from '../../components/Pagination/Pagination';
+import {
+	getFilterCategory, getFilterCurrentPage,
+	getFilterSearchValue, getFilterSortData
+} from 'redux/slices/filterSlice';
+import {
+	fetchPizzas,
+	getPizzaItems,
+	getPizzaStatus
+} from 'redux/slices/pizzaSlice';
+import MainCard from 'components/MainCard/MainCard';
+import MainCardLoader from 'components/MainCard/MainCardLoader';
+import Categories from 'components/Categories/Categories';
+import Sort from 'components/Sort/Sort';
+import Pagination from 'components/Pagination/Pagination';
 import s from './AllPizzas.module.scss';
 
 const AllPizzas: React.FC = () => {
-	const {
-		categoryId,
-		sortData,
-		currentPage,
-		searchValue
-	} = useSelector((state: any) => state.filterSlice);
-	
-	const { items, status } = useSelector((state: any) => state.pizzaSlice);
 	const dispatch = useDispatch();
+	
+	const searchValue = useSelector(getFilterSearchValue);
+	const currentPage = useSelector(getFilterCurrentPage);
+	const categoryId = useSelector(getFilterCategory);
+	const sortData = useSelector(getFilterSortData);
+	
+	const status = useSelector(getPizzaStatus);
+	const items = useSelector(getPizzaItems);
 	
 	useEffect(() => {
 		const fetchData = async () => {
