@@ -1,18 +1,16 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilterSortData, setSortData } from 'redux/slices/filterSlice';
+import {
+	getFilterSortData,
+	setSortData,
+	sortObj
+} from 'redux/slices/filterSlice';
 import Arrow from 'shared/images/icons/sort-arrow.svg';
 import s from './Sort.module.scss';
 
-type SortItem = {
-	name: string;
-	sortBy: string;
-	order: string;
-}
-
 type M = MouseEvent & { path: Node[]; }
 
-const sortingList: SortItem[] = [
+const sortingList: sortObj[] = [
 	{ name: 'Сначала популярные', sortBy: 'rating', order: 'desc' },
 	{ name: 'Сначала недорогие', sortBy: 'price', order: 'asc' },
 	{ name: 'Сначала дорогие', sortBy: 'price', order: 'desc' },
@@ -34,7 +32,7 @@ const Sort: React.FC = () => {
 		}
 	};
 	
-	const onClickListItem = (obj: SortItem): void => {
+	const onClickListItem = (obj: sortObj): void => {
 		setIsOpen(false);
 		dispatch(setSortData(obj));
 	};

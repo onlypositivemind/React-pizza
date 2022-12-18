@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
 import {
 	getFilterCategory, getFilterCurrentPage,
 	getFilterSearchValue, getFilterSortData
@@ -17,7 +18,7 @@ import Pagination from 'components/Pagination/Pagination';
 import s from './AllPizzas.module.scss';
 
 const AllPizzas: React.FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	
 	const searchValue = useSelector(getFilterSearchValue);
 	const currentPage = useSelector(getFilterCurrentPage);
@@ -31,7 +32,6 @@ const AllPizzas: React.FC = () => {
 		const fetchData = async () => {
 			
 			dispatch(
-				// @ts-ignore
 				fetchPizzas({
 					currentPage,
 					categoryId,

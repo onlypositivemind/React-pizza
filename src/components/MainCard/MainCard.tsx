@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, selectFindCount } from 'redux/slices/basketSlice';
+import { BasketItem, addItem, selectFindCount } from 'redux/slices/basketSlice';
 import s from './MainCard.module.scss';
 
 type MainCardProps = {
@@ -31,13 +31,14 @@ const MainCard: React.FC<MainCardProps> = (
 	const [activeSize, setActiveSize] = useState<number>(0);
 	
 	const onClickAdd = (): void => {
-		const item = {
+		const item: BasketItem = {
 			id,
 			name,
 			price,
 			imageUrl,
 			type: typesName[activeType],
 			size: sizes[activeSize],
+			count: 0,
 		};
 		dispatch(addItem(item));
 	};
