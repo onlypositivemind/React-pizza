@@ -36,7 +36,7 @@ const Basket: React.FC = () => {
 					<h2>Корзина</h2>
 				</div>
 				<div className={s.right} onClick={onClickClear}>
-					<img src={DeleteSVG} alt="Delete" />
+					<img src={DeleteSVG} alt="Clear" />
 					<p>Очистить корзину</p>
 				</div>
 			</div>

@@ -5,7 +5,7 @@ import s from './Categories.module.scss';
 
 const categories: string[] = ['Все', 'Мясные', 'Острые', 'С грибами', 'Без мяса'];
 
-const Categories: React.FC = () => {
+const Categories: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
 	const categoryId = useSelector(getFilterCategory);
 	
@@ -30,6 +30,6 @@ const Categories: React.FC = () => {
 			</ul>
 		</div>
 	);
-};
+});
 
 export default Categories;

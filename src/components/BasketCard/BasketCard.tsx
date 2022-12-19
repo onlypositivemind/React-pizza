@@ -3,24 +3,15 @@ import { useDispatch } from 'react-redux';
 import {
 	deleteItem,
 	plusItem,
-	minusItem
+	minusItem,
+	BasketItem
 } from 'redux/slices/basketSlice';
 import DeleteSVG from 'shared/images/icons/delete-basket-i.svg';
 import MinusSVG from 'shared/images/icons/basket-minus.svg';
 import PlusSVG from 'shared/images/icons/basket-plus.svg';
 import s from './BasketCard.module.scss';
 
-type BasketCardProps = {
-	id: string;
-	name: string;
-	price: number;
-	imageUrl: string;
-	type: string;
-	size: number;
-	count: number;
-}
-
-const BasketCard: React.FC<BasketCardProps> = (
+const BasketCard: React.FC<BasketItem> = (
 	{
 		id,
 		name,
@@ -61,7 +52,12 @@ const BasketCard: React.FC<BasketCardProps> = (
 					alt="Minus"
 				/>
 				<p>{count}</p>
-				<img src={PlusSVG} onClick={onClickPlus} alt="Plus" />
+				<img
+					src={PlusSVG}
+					className={s.plus}
+					onClick={onClickPlus}
+					alt="Plus"
+				/>
 			</div>
 			<p className={s.price}>{price * count} ₽</p>
 			<img

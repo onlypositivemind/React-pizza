@@ -16,7 +16,7 @@ const sortingList: sortObj[] = [
 	{ name: 'Сначала дорогие', sortBy: 'price', order: 'desc' },
 ];
 
-const Sort: React.FC = () => {
+const Sort: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
 	const sortData = useSelector(getFilterSortData);
 	
@@ -73,6 +73,6 @@ const Sort: React.FC = () => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default Sort;

@@ -40,17 +40,27 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
+}
 
-	.minus {
-		opacity: 1;
-		visibility: visible;
-		transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
-	}
+.minus,
+.plus,
+.delete {
+	transition: transform 0.1s ease-in-out;
 
-	.minus.hidden {
-		opacity: 0;
-		visibility: hidden;
+	&:hover {
+		transform: translateY(2px);
 	}
+}
+
+.minus {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+}
+
+.minus.hidden {
+	opacity: 0;
+	visibility: hidden;
 }
 
 .price {

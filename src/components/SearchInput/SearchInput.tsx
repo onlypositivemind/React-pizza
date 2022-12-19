@@ -7,7 +7,7 @@ import SearchSVG from 'shared/images/icons/search.svg';
 import ClearSVG from 'shared/images/icons/clear.svg';
 import s from './SearchInput.module.scss';
 
-const SearchInput: React.FC = () => {
+const SearchInput: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
 	const [localValue, setLocalValue] = useState<string>('');
 	const inputSearchRef = useRef<HTMLInputElement>(null);
@@ -54,6 +54,6 @@ const SearchInput: React.FC = () => {
 			}
 		</div>
 	);
-};
+});
 
 export default SearchInput;
