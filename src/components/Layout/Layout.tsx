@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
+	getBasketItems,
 	getBasketTotalPrice,
 	getBasketTotalQty,
 } from 'redux/slices/basketSlice';
@@ -12,9 +13,23 @@ import BasketSVG from 'shared/images/icons/header-basket.svg';
 import s from './Layout.module.scss';
 
 const Layout: React.FC = () => {
+	const basketItems = useSelector(getBasketItems);
 	const totalPrice = useSelector(getBasketTotalPrice);
 	const totalQty = useSelector(getBasketTotalQty);
 	const status = useSelector(getPizzaStatus);
+	
+	const isMounted = useRef<boolean>(false);
+	
+	useEffect(() => {
+		if (isMounted.current) {
+			const json = JSON.stringify(basketItems);
+			console.log(json);
+			localStorage.setItem('basket', json);
+		}
+		
+		isMounted.current = true;
+		
+	}, [basketItems]);
 	
 	return (
 		<div className={s.wrapper}>

@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { RootState } from 'redux/store';
+import getBasketFromLS from 'shared/helpers/localStorage/getBasket';
+import calcTotalPrice from '../../shared/helpers/calcTotal/calcTotalPrice';
+import calcTotalQty from '../../shared/helpers/calcTotal/calcTotalQty';
 
 export type BasketItem = {
 	id: string;
@@ -18,9 +21,9 @@ interface IBasketSlice {
 }
 
 const initialState: IBasketSlice = {
-	items: [],
-	totalPrice: 0,
-	totalQty: 0,
+	items: getBasketFromLS(),
+	totalPrice: calcTotalPrice(getBasketFromLS()),
+	totalQty: calcTotalQty(getBasketFromLS()),
 };
 
 const basketSlice = createSlice({
@@ -36,15 +39,15 @@ const basketSlice = createSlice({
 				state.items.push({ ...action.payload, count: 1 });
 			}
 			
-			state.totalPrice = state.items.reduce((acc, obj) => acc + obj.price * obj.count, 0);
-			state.totalQty = state.items.reduce((acc, obj) => acc + obj.count, 0);
+			state.totalPrice = calcTotalPrice(state.items);
+			state.totalQty = calcTotalQty(state.items);
 		},
 		
 		deleteItem: (state, action: PayloadAction<string>) => {
 			state.items = state.items.filter(obj => obj.id !== action.payload);
 			
-			state.totalPrice = state.items.reduce((acc, obj) => acc + obj.price * obj.count, 0);
-			state.totalQty = state.items.reduce((acc, obj) => acc + obj.count, 0);
+			state.totalPrice = calcTotalPrice(state.items);
+			state.totalQty = calcTotalQty(state.items);
 		},
 		
 		plusItem: (state, action: PayloadAction<string>) => {
@@ -53,8 +56,8 @@ const basketSlice = createSlice({
 				findItem.count++;
 			}
 			
-			state.totalPrice = state.items.reduce((acc, obj) => acc + obj.price * obj.count, 0);
-			state.totalQty = state.items.reduce((acc, obj) => acc + obj.count, 0);
+			state.totalPrice = calcTotalPrice(state.items);
+			state.totalQty = calcTotalQty(state.items);
 		},
 		
 		minusItem: (state, action: PayloadAction<string>) => {
@@ -63,8 +66,8 @@ const basketSlice = createSlice({
 				findItem.count--;
 			}
 			
-			state.totalPrice = state.items.reduce((acc, obj) => acc + obj.price * obj.count, 0);
-			state.totalQty = state.items.reduce((acc, obj) => acc + obj.count, 0);
+			state.totalPrice = calcTotalPrice(state.items);
+			state.totalQty = calcTotalQty(state.items);
 		},
 		
 		clearItems: (state) => {
