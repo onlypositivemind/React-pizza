@@ -23,8 +23,7 @@ const Layout: React.FC = () => {
 	useEffect(() => {
 		if (isMounted.current) {
 			const json = JSON.stringify(basketItems);
-			console.log(json);
-			localStorage.setItem('basket', json);
+			localStorage.setItem('pizza-basket', json);
 		}
 		
 		isMounted.current = true;

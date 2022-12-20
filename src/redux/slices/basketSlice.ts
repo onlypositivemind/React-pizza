@@ -11,7 +11,7 @@ export type BasketItem = {
 	imageUrl: string;
 	type: string;
 	size: number;
-	count: number;
+	count?: number;
 }
 
 interface IBasketSlice {

@@ -38,7 +38,6 @@ const MainCard: React.FC<MainCardProps> = (
 			imageUrl,
 			type: typesName[activeType],
 			size: sizes[activeSize],
-			count: 0,
 		};
 		dispatch(addItem(item));
 	};

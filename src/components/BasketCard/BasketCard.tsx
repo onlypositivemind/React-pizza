@@ -19,7 +19,7 @@ const BasketCard: React.FC<BasketItem> = (
 		imageUrl,
 		type,
 		size,
-		count
+		count = 0
 	}) => {
 	const dispatch = useDispatch();
 	
