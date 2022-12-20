@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { clearItems } from 'redux/basket/slice';
 import {
-	clearItems,
 	getBasketItems,
 	getBasketTotalPrice,
 	getBasketTotalQty,
-} from 'redux/slices/basketSlice';
+} from 'redux/basket/selectors';
 import EmptyBasket from './EmptyBasket';
 import BasketCard from 'components/BasketCard/BasketCard';
 import BackButton from 'components/BackButton/BackButton';
@@ -42,7 +42,7 @@ const Basket: React.FC = () => {
 			</div>
 			<div className={s.cardsWrapper}>
 				{
-					items.map((item: any) => <BasketCard key={item.id} {...item} />)
+					items.map((item) => <BasketCard key={item.id} {...item} />)
 				}
 			</div>
 			<div className={s.info}>

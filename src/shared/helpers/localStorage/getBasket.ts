@@ -1,4 +1,4 @@
-import { BasketItem } from '../../../redux/slices/basketSlice';
+import { BasketItem } from 'redux/basket/types';
 
 const getBasketFromLS = (): BasketItem[] | [] => {
 	const data = localStorage.getItem('pizza-basket');

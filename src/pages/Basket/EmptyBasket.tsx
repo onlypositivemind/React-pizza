@@ -1,7 +1,7 @@
 import React from 'react';
-import BackButton from '../../components/BackButton/BackButton';
-import Emoji from '../../shared/images/emoji-basket.jpg';
-import ManSVG from '../../shared/images/icons/man-with-basket.svg';
+import BackButton from 'components/BackButton/BackButton';
+import Emoji from 'shared/images/emoji-basket.jpg';
+import ManSVG from 'shared/images/icons/man-with-basket.svg';
 import s from './Basket.module.scss';
 
 const EmptyBasket: React.FC = () => (

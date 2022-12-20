@@ -5,9 +5,9 @@ import {
 	getBasketItems,
 	getBasketTotalPrice,
 	getBasketTotalQty,
-} from 'redux/slices/basketSlice';
-import { getPizzaStatus } from 'redux/slices/pizzaSlice';
-import SearchInput from '../SearchInput/SearchInput';
+} from 'redux/basket/selectors';
+import { getPizzaStatus } from 'redux/pizza/selectors';
+import SearchInput from 'components/SearchInput/SearchInput';
 import Logo from 'shared/images/logo.jpg';
 import BasketSVG from 'shared/images/icons/header-basket.svg';
 import s from './Layout.module.scss';

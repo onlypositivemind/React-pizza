@@ -1,24 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from 'redux/store';
+import { IBasketSlice, BasketItem } from './types';
 import getBasketFromLS from 'shared/helpers/localStorage/getBasket';
-import calcTotalPrice from '../../shared/helpers/calcTotal/calcTotalPrice';
-import calcTotalQty from '../../shared/helpers/calcTotal/calcTotalQty';
-
-export type BasketItem = {
-	id: string;
-	name: string;
-	price: number;
-	imageUrl: string;
-	type: string;
-	size: number;
-	count?: number;
-}
-
-interface IBasketSlice {
-	items: BasketItem[];
-	totalPrice: number;
-	totalQty: number;
-}
+import calcTotalPrice from 'shared/helpers/calcTotal/calcTotalPrice';
+import calcTotalQty from 'shared/helpers/calcTotal/calcTotalQty';
 
 const initialState: IBasketSlice = {
 	items: getBasketFromLS(),
@@ -77,13 +61,6 @@ const basketSlice = createSlice({
 		}
 	},
 });
-
-export const getBasketItems = (state: RootState): BasketItem[] => state.basketSlice.items;
-export const getBasketTotalPrice = (state: RootState): number => state.basketSlice.totalPrice;
-export const getBasketTotalQty = (state: RootState): number => state.basketSlice.totalQty;
-
-export const selectFindCount = (id: string) => (state: RootState): number => state.basketSlice.items
-.find((obj) => obj.id === id)?.count || 0;
 
 export const {
 	addItem,

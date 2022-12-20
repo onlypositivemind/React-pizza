@@ -1,10 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-	getFilterSortData,
-	setSortData,
-	sortObj
-} from 'redux/slices/filterSlice';
+import { setSortData } from 'redux/filter/slice';
+import { getFilterSortData } from 'redux/filter/selectors';
+import { sortObj } from 'redux/filter/types';
 import Arrow from 'shared/images/icons/sort-arrow.svg';
 import s from './Sort.module.scss';
 

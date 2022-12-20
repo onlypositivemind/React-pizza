@@ -4,12 +4,9 @@ import { useAppDispatch } from '../../redux/store';
 import {
 	getFilterCategory, getFilterCurrentPage,
 	getFilterSearchValue, getFilterSortData
-} from 'redux/slices/filterSlice';
-import {
-	fetchPizzas,
-	getPizzaItems,
-	getPizzaStatus
-} from 'redux/slices/pizzaSlice';
+} from 'redux/filter/selectors';
+import fetchPizzas from 'redux/pizza/asyncActions';
+import { getPizzaItems, getPizzaStatus } from 'redux/pizza/selectors';
 import MainCard from 'components/MainCard/MainCard';
 import MainCardLoader from 'components/MainCard/MainCardLoader';
 import Categories from 'components/Categories/Categories';

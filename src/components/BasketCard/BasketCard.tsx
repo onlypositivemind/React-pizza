@@ -1,11 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import {
-	deleteItem,
-	plusItem,
-	minusItem,
-	BasketItem
-} from 'redux/slices/basketSlice';
+import { deleteItem, plusItem, minusItem } from 'redux/basket/slice';
+import { BasketItem } from 'redux/basket/types';
 import DeleteSVG from 'shared/images/icons/delete-basket-i.svg';
 import MinusSVG from 'shared/images/icons/basket-minus.svg';
 import PlusSVG from 'shared/images/icons/basket-plus.svg';
