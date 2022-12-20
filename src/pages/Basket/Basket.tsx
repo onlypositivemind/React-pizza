@@ -42,7 +42,7 @@ const Basket: React.FC = () => {
 			</div>
 			<div className={s.cardsWrapper}>
 				{
-					items.map((item) => <BasketCard key={item.id} {...item} />)
+					items.map((item, index) => <BasketCard key={index} {...item} />)
 				}
 			</div>
 			<div className={s.info}>

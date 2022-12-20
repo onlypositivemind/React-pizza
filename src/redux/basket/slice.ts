@@ -15,7 +15,11 @@ const basketSlice = createSlice({
 	initialState,
 	reducers: {
 		addItem: (state, action: PayloadAction<BasketItem>) => {
-			const findItem = state.items.find(obj => obj.id === action.payload.id);
+			const findItem = state.items.find(
+				obj => obj.id === action.payload.id
+					&& obj.type === action.payload.type
+					&& obj.size === action.payload.size
+			);
 			
 			if (findItem && findItem.count) {
 				findItem.count++;
