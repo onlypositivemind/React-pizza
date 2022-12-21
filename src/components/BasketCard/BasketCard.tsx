@@ -19,15 +19,24 @@ const BasketCard: React.FC<BasketItem> = (
 	}) => {
 	const dispatch = useDispatch();
 	
+	const item: BasketItem = {
+		id,
+		name,
+		price,
+		imageUrl,
+		type,
+		size,
+	};
+	
 	const onClickPlus = (): void => {
-		dispatch(plusItem(id));
+		dispatch(plusItem(item));
 	};
 	const onClickMinus = (): void => {
-		dispatch(minusItem(id));
+		dispatch(minusItem(item));
 	};
 	
 	const onClickDelete = (): void => {
-		dispatch(deleteItem(id));
+		dispatch(deleteItem(item));
 	};
 	
 	return (
