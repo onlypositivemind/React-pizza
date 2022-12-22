@@ -6,10 +6,8 @@ import {
 	getBasketTotalPrice,
 	getBasketTotalQty,
 } from 'redux/basket/selectors';
+import { BasketCard, BackButton, PayButton } from 'components';
 import EmptyBasket from './EmptyBasket';
-import BasketCard from 'components/BasketCard/BasketCard';
-import BackButton from 'components/BackButton/BackButton';
-import PayButton from 'components/PayButton/PayButton';
 import BasketSVG from 'shared/images/icons/basket.svg';
 import DeleteSVG from 'shared/images/icons/trash.svg';
 import s from './Basket.module.scss';

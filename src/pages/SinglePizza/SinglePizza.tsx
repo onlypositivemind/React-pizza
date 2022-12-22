@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import BackButton from 'components/BackButton/BackButton';
+import { BackButton } from 'components';
 import SinglePizzaLoader from './SinglePizzaLoader';
 import s from './SinglePizza.module.scss';
 
