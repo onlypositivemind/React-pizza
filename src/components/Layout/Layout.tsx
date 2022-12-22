@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
 	getBasketItems,
@@ -18,6 +18,8 @@ const Layout: React.FC = () => {
 	const totalQty = useSelector(getBasketTotalQty);
 	const status = useSelector(getPizzaStatus);
 	
+	const location = useLocation();
+	
 	const isMounted = useRef<boolean>(false);
 	
 	useEffect(() => {
@@ -33,7 +35,9 @@ const Layout: React.FC = () => {
 	return (
 		<div className={s.wrapper}>
 			
-			<header className={s.header}>
+			<header
+				className={location.pathname === '/' ? `${s.header} ${s.home}` : s.header}
+			>
 				<Link to="/">
 					<div className={s.headerLeft}>
 						<img src={Logo} alt="Logo" />
@@ -48,7 +52,9 @@ const Layout: React.FC = () => {
 					<div className={s.headerRight}>
 						<SearchInput />
 						<Link to="/basket">
-							<div className={s.basketContent}>
+							<div
+								className={totalPrice < 999 ? s.basketContent : `${s.basketContent} ${s.wide}`}
+							>
 								<span>{totalPrice} ₽</span>
 								<p>
 									<img src={BasketSVG} alt="Basket icon" />

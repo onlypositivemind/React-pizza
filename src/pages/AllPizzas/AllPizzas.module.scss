@@ -16,6 +16,16 @@
 .top {
 	margin-bottom: 30px;
 	justify-content: space-between;
+
+	@media (max-width: 1024px) {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 30px;
+	}
+
+	@media (max-width: 630px) {
+		gap: 15px;
+	}
 }
 
 .pizzasWrapper {

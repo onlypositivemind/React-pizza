@@ -98,4 +98,8 @@
 .image {
 	margin-bottom: 70px;
 	pointer-events: none;
+
+	@media (max-width: 700px) {
+		width: 200px;
+	}
 }

@@ -1,5 +1,6 @@
 .wrapper {
 	margin: 0 auto;
+	padding-top: 35px;
 	max-width: 1340px;
 	min-height: calc(100vh - 90px);
 	overflow: hidden;
@@ -19,10 +20,16 @@
 
 .header {
 	margin: 0 35px 40px;
-	padding: 35px 0;
+	padding: 0 0 35px 0;
 	gap: 40px;
 	border-bottom: 1px solid #fff3d6;
 	justify-content: space-between;
+}
+
+.header.home {
+	@media (max-width: 1024px) {
+		flex-direction: column;
+	}
 }
 
 .headerLeft {
@@ -67,9 +74,18 @@
 	font-size: var(--font-size-s);
 	gap: 80px;
 
+	@media (max-width: 640px) {
+		flex-direction: column;
+	}
+
 	a {
 		color: #fff;
 	}
+}
+
+.header,
+.headerRight {
+	gap: 20px;
 }
 
 .basketContent {
@@ -118,6 +134,10 @@
 			box-shadow: 1px -3px 5px rgba(0, 0, 0, 0.2);
 		}
 	}
+}
+
+.basketContent.wide:after {
+	left: 58%;
 }
 
 .main {
